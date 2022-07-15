@@ -42,7 +42,6 @@ exports.getProducts = async (req, res) => {
 
     res.status(200).send({
       status: "success",
-      dataUser: req.user.id,
       data: {
         product: data,
       },
