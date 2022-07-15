@@ -45,7 +45,7 @@ exports.getCategories = async (req, res) => {
 exports.getCategory = async (req, res) => {
   try {
     const { id } = req.params;
-    const data = await category.findAll({
+    const data = await category.findOne({
       where: { id },
       attributes: {
         exclude: ["createdAt", "updatedAt"],
