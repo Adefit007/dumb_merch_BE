@@ -87,7 +87,7 @@ exports.addProduct = async (req, res) => {
 exports.getProduct = async (req, res) => {
   try {
     const { id } = req.params;
-    let data = await product.findAll({
+    let data = await product.findOne({
       where: { id },
       attributes: {
         exclude: ["createdAt", "updatedAt"],
@@ -96,12 +96,7 @@ exports.getProduct = async (req, res) => {
 
     data = JSON.parse(JSON.stringify(data));
 
-    data = data.map((item) => {
-      return {
-        ...item,
-        image: process.env.PATH_FILE + item.image,
-      };
-    });
+    data = { ...data, image: process.env.PATH_FILE + data.image };
 
     res.send({
       status: "success",
